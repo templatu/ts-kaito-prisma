@@ -1,0 +1,94 @@
+{
+  "type": "node",
+  "package": {
+    "main": "dist/server.js",
+    "scripts": {
+      "build": "tsc",
+      "dev": "nodemon --watch src --exec ts-node src/server.ts",
+      "start": "node dist/server.js"
+    },
+    "devDependencies": {
+      "rimraf": "^4.1.3",
+      "typescript": "^4.5.2",
+      "tsc-watch": "^6.0.0"
+    },
+    "dependencies": {
+      "@kaito-http/core": "^2.7.1",
+      "zod": "^3.20.6"
+    }
+  },
+  "env": {
+    "APP_PORT": "3000"
+  },
+  "gitignore": ["dist", "node_modules", ".DS_Store", ".env"],
+  "createExampleEnv": true,
+  "optionals": {
+    "prisma": {
+      "name": "Prisma",
+      "description": "Database ORM",
+      "default": true,
+      "package": {
+        "devDependencies": {
+          "prisma": "^4.11.0"
+        }
+      },
+      "env": {
+        "DATABASE_URL": "mysql://johndoe:randompassword@localhost:3306/mydb"
+      }
+    },
+    "eslint": {
+      "name": "ESLint",
+      "description": "Automatic file linting for code quality",
+      "default": true,
+      "package": {
+        "devDependencies": {
+          "eslint": "^8.35.0",
+          "@typescript-eslint/eslint-plugin": "^5.54.0",
+          "@typescript-eslint/parser": "^5.54.0"
+        }
+      },
+      "files": [".eslintignore", ".eslintrc"]
+    },
+    "prettier": {
+      "name": "Prettier",
+      "description": "Automatic code formatting",
+      "default": true,
+      "package": {
+        "devDependencies": {
+          "prettier": "^2.8.4"
+        }
+      },
+      "files": [".prettierignore", ".prettierrc"]
+    },
+    "jest": {
+      "name": "Jest",
+      "description": "Unit testing for improved code quality and confidence",
+      "default": true,
+      "devDependencies": {
+        "jest": "^29.4.3",
+        "@types/jest": "^29.4.0",
+        "ts-jest": "^29.0.5"
+      },
+      "files": ["jest.config.js"]
+    },
+    "docker": {
+      "name": "Docker",
+      "description": "Dockerfile for production",
+      "default": false,
+      "files": ["Dockerfile"]
+    },
+    "bwutils": {
+      "name": "BlazingWorks Utilities",
+      "description": "A bunch of useful functions from @blazingworks/utils",
+      "default": false,
+      "package": {
+        "dependencies": {
+          "@blazingworks/utils": "^1.2.0"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "postCreation": "npx prisma generate"
+  }
+}
